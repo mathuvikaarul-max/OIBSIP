@@ -1,1 +1,74 @@
+import pandas as pd
+import numpy as np
+df = pd.read_csv('AB_NYC.csv')
+df
 
+df.head()
+
+df.info()
+
+df.describe()
+
+df.isnull().sum()
+
+df['name']=df['name'].fillna('Unknown')
+df['host_name']=df['host_name'].fillna('Unknown')
+df['review_per_month']=df['reviews_per_month'].fillna(0)
+df
+
+df.info()
+
+df.duplicated().sum()
+
+df = df.drop_duplicates()
+df
+
+df.columns = df.columns.str.lower()
+df.columns = df.columns.str.replace(" ", "_")
+df
+
+df['last_review'] = pd.to_datetime(df['last_review'], errors='coerce')
+
+num_cols = ['price', 'minimum_nights', 'number_of_reviews',
+            'reviews_per_month', 'calculated_host_listings_count', 'availability_365']
+
+for col in num_cols:
+    df[col] = pd.to_numeric(df[col], errors='coerce')
+
+Q1 = df[num_cols].quantile(0.25)
+Q3 = df[num_cols].quantile(0.75)
+
+IQR = Q3 - Q1
+
+df = df[~((df[num_cols] < (Q1 - 1.5 * IQR)) |
+          (df[num_cols] > (Q3 + 1.5 * IQR))).any(axis=1)]
+
+df.info()
+
+df.to_csv('cleaned_AB_NYC.csv', index=False)
+df
+
+df.head()
+
+df.info()
+
+df.describe()
+
+df.nunique()
+
+df['neighbourhood_group'].value_counts()
+df['room_type'].value_counts()
+
+df.corr(numeric_only=True)
+
+df['price'].describe()
+
+df.groupby('neighbourhood_group')['price'].mean()
+df.groupby('room_type')['price'].mean()
+
+df['number_of_reviews'].describe()
+df['reviews_per_month'].describe()
+
+df['availability_365'].describe()
+
+df.info()
