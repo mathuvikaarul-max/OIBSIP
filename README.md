@@ -31,4 +31,7 @@ This repository contains all the tasks completed as part of the Oasis Infobyte I
 Here is the Output Video :
  https://drive.google.com/drive/folders/1MlgMulgzL_9c-6HFFrWFd0t3wAXijjSf
 
+Google colab link:
+https://colab.research.google.com/drive/1t544TwGxPoTqcUOvkX_XBJ1-Pm0hTL0E
+
 
