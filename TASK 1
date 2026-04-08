@@ -1,1 +1,52 @@
+import pandas as pd
+df=pd.read_csv("retail_sales_dataset.csv")
+df
+df.info()
+df.describe()
+df.isnull().sum()
+df.dropna()
+df.drop_duplicates()
+print("Mean:\n", df.mean(numeric_only=True))
+print("\nMedian:\n", df.median(numeric_only=True))
+print("\nMode:\n", df.mode(numeric_only=True).iloc[0])
+print("\nStandard Deviation:\n", df.std(numeric_only=True))
 
+import matplotlib.pyplot as plt
+monthly_sales = df.groupby('Month')['Total Amount'].sum()
+
+plt.plot(monthly_sales,marker="o",ms="10",mew="2",mfc="#2750F5",ls="-.")
+plt.title("Monthly Sales Trend")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.grid(color="black")
+plt.show()
+
+if 'Gender' in df.columns:
+    gender_sales = df.groupby('Gender')['Total Amount'].sum()
+    print(gender_sales)
+
+category_sales = df.groupby('Product Category')['Total Amount'].sum()
+
+print(category_sales)
+
+category_sales.plot(kind='bar',color="#27F557")
+plt.title("Sales by Category")
+plt.xlabel("Category")
+plt.ylabel("Sales")
+plt.show()
+
+plt.plot(monthly_sales,ls="dashed",marker="*",ms="10",mfc="#F52784",color="#27F5E4")
+plt.title("Sales Trend Over Time")
+plt.grid()
+plt.show()
+
+plt.hist(df['Total Amount'], bins=10,color="#9C27F5")
+plt.title("Sales Distribution")
+plt.show()
+
+import seaborn as sns
+
+corr = df.corr(numeric_only=True)
+sns.heatmap(corr, annot=True)
+plt.title("Correlation Heatmap")
+plt.show()
