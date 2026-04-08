@@ -69,6 +69,33 @@ https://colab.research.google.com/drive/1XmPMHVPbdyx-dtUahbeOJZcYxrHEc0wi?usp=sh
 
 # Task 3 - Cleaning Data
 
+## 🎯 Objectives
+
+* Handle missing values
+* Remove duplicates
+* Standardize column names
+* Fix data types
+* Remove outliers
+
+## 🛠️ Tools
+
+* Python
+* Pandas
+* NumPy
+
+## 🔄 Steps Performed
+
+1. Loaded dataset
+2. Checked structure and missing values
+3. Filled missing data (`name`, `host_name`, `reviews_per_month`)
+4. Removed duplicate rows
+5. Standardized column names (lowercase, underscores)
+6. Converted `last_review` to datetime
+7. Removed outliers using IQR method
+8. Saved cleaned dataset
+   
+ Google colab link:
+https://colab.research.google.com/drive/1VTsS8jdbXnoHhMqeOna6SoYPXM-MFJDj?usp=sharing
 
 Here is the Output Video :
  https://drive.google.com/drive/folders/1MlgMulgzL_9c-6HFFrWFd0t3wAXijjSf
